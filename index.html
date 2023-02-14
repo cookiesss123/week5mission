@@ -260,7 +260,14 @@
                 },
                 // 送出表單
                 onSubmit() {
-                    console.log('送出表單')
+                    console.log('送出表單');
+                    axios.delete(`${this.url}/${this.path}/carts`)
+                        .then(res=>{
+                            alert('已建立訂單');
+                            this.getCarts();
+                        }).catch(err=>{
+                            alert(err.data.message);
+                        })
                 },
                 getProducts(){
                     axios.get(`${this.url}/${this.path}/products/all`)
